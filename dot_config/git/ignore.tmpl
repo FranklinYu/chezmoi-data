@@ -1,0 +1,15 @@
+# Note: this file is generated, and will be overwritten by Chezmoi at next
+# deployment.
+
+.bundle/
+venv/
+
+# macOS
+.DS_Store
+
+# gEdit
+*~
+
+{{ if stat (joinPath .chezmoi.sourceDir "local/git-ignore" ) -}}
+	{{ include "local/git-ignore" -}}
+{{ end }}
