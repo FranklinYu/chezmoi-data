@@ -1,0 +1,10 @@
+# https://github.com/github/linguist/blob/master/docs/overrides.md
+
+/private_dot_ssh/config linguist-languages=SSH-Config
+
+/dot_bash_profile linguist-language=Shell
+/dot_profile linguist-language=Shell
+/dot_sessionrc linguist-language=Shell
+/dot_zprofile linguist-language=Shell
+
+/dot_vimrc linguist-language=Vim-Script
