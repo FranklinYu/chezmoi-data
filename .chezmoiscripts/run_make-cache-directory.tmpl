@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Note: this script manages “~/.cache”.
+
+set -o errexit
+
+{{ if eq .chezmoi.os "darwin" }}
+	# p: parent; v: verbose
+	mkdir -p -v ~/Library/Caches/XDG-cache
+
+	# [test]L: symbolic link; [readlink]f: follow
+	if [ -L ~/.cache ] && [ $(readlink -f ~/.cache) = ~/Library/Caches/XDG-cache ]
+	then >&2 echo '[debug] ~/.cache is up-to-date.'
+	# s: symbolic link; v: verbose
+	else ln -s -v ~/Library/Caches/XDG-cache ~/.cache
+	fi
+{{ else if eq .chezmoi.os "linux" }}
+	mkdir --parents --verbose ~/.cache
+{{ else }}
+	>&2 echo '[fatal] unsupported operating system'
+	exit 1
+{{ end }}
