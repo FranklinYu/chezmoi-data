@@ -1,0 +1,35 @@
+[core]
+	editor = vim
+
+[alias]
+	a = add
+	ap = a --patch
+	b = branch
+	c = commit --verbose
+	c- = c --amend
+	ca = c --all
+	ca- = ca --amend
+	d = diff
+	dm = d --find-renames
+	ds = d --staged
+	f = fetch
+	l = pull
+	m = merge
+	p = push
+	r = remote --verbose
+	re = restore
+	rst = reset
+	sh = show
+	ss = stash
+	st = status
+	sw = switch
+[pull]
+	ff = only
+[push]
+	default = simple
+[user]
+	name = Franklin Yu
+	email = franklinyu@google.com
+
+[include]
+	path = local-config
