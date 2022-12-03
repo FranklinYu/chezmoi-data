@@ -27,7 +27,7 @@ setopt hist_ignore_dups hist_ignore_space hist_no_store hist_reduce_blanks
 setopt correct list_packed magic_equal_subst numeric_glob_sort print_exit_value
 
 autoload -Uz add-zsh-hook
-source ~/.config/zsh/report-completion.zsh
+2>/dev/null source ~/.config/zsh/report-completion.zsh
 
 # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
 function () {
