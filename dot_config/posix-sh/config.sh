@@ -1,4 +1,4 @@
-alias be='bundle exec' g=git grep='grep --color' ping='ping -c 10'
+alias be='bundle exec' che=chezmoi g=git grep='grep --color' ping='ping -c 10'
 alias docker-shell='docker run --rm --interactive --tty --volume "$PWD:/docker"'
 
 # aliases related to the directory stack
