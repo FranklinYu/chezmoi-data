@@ -9,7 +9,7 @@ export TEX_CLEAN='latexmk -C'
 
 # Java
 export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
-export ANT_OPTS="-Dant.logger.defaults=$HOME/.config/java/ant-colors"
+export ANT_OPTS="-Dant.logger.defaults=$HOME/.config/java/ant-logger.properties"
 
 [ -f /usr/bin/lesspipe ] && eval `lesspipe`
 
