@@ -1,5 +1,8 @@
-alias be='bundle exec' che=chezmoi g=git grep='grep --color' ping='ping -c 10'
+alias be='bundle exec' che=chezmoi g=git
 alias docker-shell='docker run --rm --interactive --tty --volume "$PWD:/docker"'
+
+# drop-in replacements (e.g. default flags)
+alias cargo='nice cargo' grep='grep --color' ping='ping -c 10'
 
 # aliases related to the directory stack
 alias pu=pushd po=popd d='dirs -v'
