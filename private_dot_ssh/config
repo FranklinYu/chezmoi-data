@@ -3,5 +3,6 @@ IgnoreUnknown UseKeychain
 UseKeychain yes
 
 AddKeysToAgent yes
+SendEnv LANG LC_*
 
 Include ~/.config/ssh/local.ssh_config
