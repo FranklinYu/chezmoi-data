@@ -1,0 +1,65 @@
+# Maintainer: Franklin Yu <franklinyu@google.com>
+pkgname=my-base-meta
+pkgver=0.1.1
+pkgrel=1
+pkgdesc="Packages that I want for every Arch install."
+arch=(any)
+url='https://github.com/FranklinYu'
+license=(private)
+
+_depends_for_command=(
+  # Command: checkservices
+  # https://wiki.archlinux.org/title/System_maintenance#Restart_or_reboot_after_upgrades
+  archlinux-contrib
+
+  # Command: hostname
+  inetutils
+
+  # Command: ifne
+  moreutils
+
+  # Command: pacdiff
+  # https://wiki.archlinux.org/title/Pacman/Pacnew_and_Pacsave#pacdiff
+  pacman-contrib
+
+  # Command: psql
+  postgresql-libs
+)
+
+depends=(
+  ansible-core
+  base bat busybox
+  chezmoi cmark cowfortune cowsay
+  diff-so-fancy difftastic diffutils
+  exa
+  fd fzf
+  git git-delta github-cli goaccess
+  intel-ucode
+  linux-firmware linux-lts
+  minisign
+  openssh
+  python-setuptools
+  reflector reptyr ripgrep rsync
+  skim subversion sudo
+  texinfo trash-cli
+  vim
+
+  # for AUR maintainer
+  aurpublish devtools
+
+  # AUR helper
+  aurutils vifm
+
+  # "man-db" is the command; "man-pages" is the actual pages.
+  man-db man-pages
+
+  # common development-tools like GNU Make
+  posix-c-development posix-software-development
+
+  # Zsh
+  zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+
+  # packages from AUR
+  informant
+)
+depends+=("${_depends_for_command[@]}")
