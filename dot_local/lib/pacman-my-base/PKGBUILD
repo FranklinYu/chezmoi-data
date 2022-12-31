@@ -1,6 +1,6 @@
 # Maintainer: Franklin Yu <franklinyu@google.com>
 pkgname=my-base-meta
-pkgver=0.1.1
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="Packages that I want for every Arch install."
 arch=(any)
@@ -58,6 +58,11 @@ depends=(
 
   # Zsh
   zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+
+  # Note: Ruby has circular dependency. If it needs to be uninstalled in future,
+  # one needs to explicitly specify this package, instead of relying on orphan
+  # detection.
+  ruby
 
   # packages from AUR
   informant
