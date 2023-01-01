@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o errexit -o nounset -o pipefail
+set -o errexit -o nounset
 
 # required command
 if ! command -v ifne >/dev/null
@@ -13,9 +13,11 @@ sudo pacman --sync --refresh --sysupgrade
 
 # a.k.a. -Qtdq and -Rcs respectively
 # See: https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)
+>&2 echo '[info] checking unused packages…'
 pacman --query --unrequired --deps --quiet |
 	ifne sudo pacman --remove --cascade --recursive -
 
+>&2 echo '[info] checking optional packages…'
 if pacman --query --unrequired --unrequired --deps
 then >&2 echo '[warning] optional package found'; exit 1
 fi
