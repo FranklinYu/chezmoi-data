@@ -2,10 +2,13 @@ alias be='bundle exec' che=chezmoi g=git
 alias docker-shell='docker run --rm --interactive --tty --volume "$PWD:/docker"'
 
 # drop-in replacements (e.g. default flags)
-alias cargo='nice cargo' grep='grep --color' ping='ping -c 10'
+alias grep='grep --color' ping='ping -c 10'
 
 # aliases related to the directory stack
 alias pu=pushd po=popd d='dirs -v'
+
+# https://github.com/rust-lang/cargo/issues/9250
+alias cargo='nice cargo'
 
 # When the “LESS” environment variable is unset, Git sets it to FRX;
 # https://git-scm.com/docs/git-config/2.31.1#Documentation/git-config.txt-corepager
