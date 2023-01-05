@@ -1,6 +1,6 @@
 # Maintainer: Franklin Yu <franklinyu@google.com>
 pkgname=my-base-meta
-pkgver=0.1.2
+pkgver=0.1.3
 pkgrel=1
 pkgdesc="Packages that I want for every Arch install."
 arch=(any)
@@ -41,7 +41,7 @@ depends=(
   python-setuptools
   reflector reptyr ripgrep rsync
   skim subversion sudo
-  texinfo trash-cli
+  texinfo tmux trash-cli
   vim
 
   # for AUR maintainer
