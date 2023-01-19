@@ -1,6 +1,6 @@
 # Maintainer: Franklin Yu <franklinyu@google.com>
 pkgname=my-base-meta
-pkgver=0.1.3
+pkgver=0.1.4
 pkgrel=1
 pkgdesc="Packages that I want for every Arch install."
 arch=(any)
@@ -45,7 +45,7 @@ depends=(
   vim
 
   # for AUR maintainer
-  aurpublish devtools
+  aurpublish devtools namcap
 
   # AUR helper
   aurutils vifm
