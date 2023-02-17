@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# Note: “local” and “mktemp” are non-POSIX.
+
+set -o errexit -o nounset
+
+move_or_concatenate() {
+	local cache=~/.cache/"$1" state=~/.state/"$1" swap
+
+	if ! [ -f "${cache}" ]
+	then >&2 echo "[info] already migrated: $1"
+	elif [ -f "${state}" ]
+	then
+		# need to merge the two files
+		swap="$(mktemp)"
+		>&2 echo "[info] temporary file created: ${swap}"
+		cat "${cache}" "${state}" >"${swap}"
+		mv -v "${swap}" "${state}"
+		rm -v "${swap}"
+	else mv -v "${cache}" "${state}"
+	fi
+}
+
+move_or_concatenate irb/history
+move_or_concatenate pry/history
+move_or_concatenate less/history
+move_or_concatenate nodejs/repl_history
+move_or_concatenate zsh/history
+
+vim_cache=~/.cache/vim/info vim_state=~/.state/vim/info
+if ! [ -f "${vim_cache}" ]
+then >&2 echo '[info] already migrated: Vim'
+elif [ -f "${vim_state}" ]
+then >&2 echo '[error] Vim file needs to be manually migrated!'; exit 1
+else mv -v "${vim_cache}" "${vim_state}"
+fi
