@@ -112,17 +112,16 @@ fi
 
 source-from-share nvm/nvm.sh
 
-if 2>/dev/null source /Applications/MacPorts/iTerm2.app/Contents/Resources/iterm2_shell_integration.zsh ||
+2>/dev/null source /Applications/MacPorts/iTerm2.app/Contents/Resources/iterm2_shell_integration.zsh ||
 	2>/dev/null source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh
-then
-	function FranklinYu::set-status-bar() {
-		iterm2_set_user_var ruby_version ${RUBY_VERSION:-system}
-		if command -v nvm >/dev/null
-		then iterm2_set_user_var node_version `nvm version`
-		fi
-	}
-	add-zsh-hook precmd FranklinYu::set-status-bar
-fi
+# https://iterm2.com/documentation-scripting-fundamentals.html#setting-user-defined-variables
+function iterm2_print_user_vars() {
+	iterm2_set_user_var ruby_version ${RUBY_VERSION:-system}
+	if command -v nvm >/dev/null
+	then iterm2_set_user_var node_version `nvm version`
+	fi
+	it2git 2>/dev/null
+}
 
 source-from-share zsh-autosuggestions/zsh-autosuggestions.zsh ||
 	source-from-share zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
