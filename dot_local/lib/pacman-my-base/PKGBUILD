@@ -54,7 +54,7 @@ depends=(
   man-db man-pages
 
   # common development-tools like GNU Make
-  posix-c-development posix-software-development
+  posix base-devel
 
   # Zsh
   zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
