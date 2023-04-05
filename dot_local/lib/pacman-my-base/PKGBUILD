@@ -50,8 +50,9 @@ depends=(
   # AUR helper
   aurutils vifm
 
-  # "man-db" is the command; "man-pages" is the actual pages.
-  man-db man-pages
+  # Note: the virtual package “man” contains only the reader utility (i.e. an
+  # executable); “man-pages” contains the actual manual pages (i.e. the data).
+  man man-pages
 
   # common development-tools like GNU Make
   posix base-devel
