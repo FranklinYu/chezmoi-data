@@ -2,4 +2,8 @@ emulate sh -c 'source ~/.profile'
 
 export NVM_DIR=~/.local/share/nvm
 
+if [[ -z $LANG ]] && [[ $- == *i* ]]
+then print -P '%F{red}Error: $LANG is empty or unset%f'
+fi
+
 2>/dev/null source ~/.config/zsh/local-profile.zsh
