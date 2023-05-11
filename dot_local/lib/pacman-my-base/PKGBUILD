@@ -27,7 +27,7 @@ _depends_for_command=(
 )
 
 depends=(
-  ansible-core
+  ansible-core avfs
   base bat busybox
   chezmoi cmark cowfortune cowsay
   diff-so-fancy difftastic diffutils
