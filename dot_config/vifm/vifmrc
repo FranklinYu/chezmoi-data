@@ -1,0 +1,54 @@
+" This makes vifm perform file operations on its own instead of relying on
+" standard utilities like `cp`.  While using `cp` and alike is a more universal
+" solution, it's also much slower when processing large amounts of files and
+" doesn't support progress measuring.
+set syscalls
+
+" What should be saved automatically on restarting vifm.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+" Default is only bookmarks.
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,
+            \dirstack,registers,bookmarks,bmarks
+
+" This is how many directories to store in the directory history. Default is 15.
+set history=100
+
+" Natural sort of (version) numbers within text.
+set sortnumbers
+
+" Use Vim's format of help file (has highlighting and "hyperlinks").
+" If you would rather use a plain text help file set novimhelp.
+set vimhelp
+
+" Show list of matches on tab completion in command-line mode
+set wildmenu
+
+" Display suggestions in normal, visual and view modes for keys, marks and
+" registers (at most 5 files).  In other view, when available.
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+" Ignore case in search patterns unless it contains at least one uppercase
+" letter
+set ignorecase smartcase
+
+" Use increment searching (search while typing)
+set incsearch
+
+" Try to leave some space from cursor to upper/lower border in lists
+set scrolloff=4
+
+" Set custom status line look
+set statusline="  %A %10u:%-7g %15E %= %20d  "
+
+" Show line numbers
+set number relativenumber
+
+" ------------------------------------------------------------------------------
+" File types association
+" ------------------------------------------------------------------------------
+
+" Mount AVFS with the helper script
+filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,
+         \*.tar.zst,*.tzst},<application/x-tar>
+    \ {Mount with AVFS}
+    \ FUSE_MOUNT3|avfs-vifm %SOURCE_FILE %DESTINATION_DIR
