@@ -65,7 +65,14 @@ depends=(
   # detection.
   ruby
 
-  # packages from AUR
-  informant
+  # other packages from AUR
 )
 depends+=("${_depends_for_command[@]}")
+
+_intentionally_skipped_dependencies=(
+  # This installs a Python script as a pacman hook. When Python has major
+  # release, such as 3.10 -> 3.11, this package cannot be simply upgraded due to
+  # self-referencing. The solution is to uninstall it before upgrading Python,
+  # and then install the new version.
+  informant
+)
