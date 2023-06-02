@@ -1,4 +1,4 @@
-Pry.config.history_file = "~/.state/pry/history"
+Pry.config.history_file = "~/.local/state/pry/history"
 
 Pry::Prompt.add(
   :colored, 'Colored version of :default.'

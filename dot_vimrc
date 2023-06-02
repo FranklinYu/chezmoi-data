@@ -6,7 +6,7 @@ syntax on
 set backupdir=./.backup,/tmp,.
 set directory=./.backup,/tmp,.
 
-set viminfo+=n~/.state/vim/info
+set viminfo+=n~/.local/state/vim/info
 
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
 

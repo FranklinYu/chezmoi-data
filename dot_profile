@@ -26,11 +26,11 @@ export CARGO_HOME=~/.local/share/cargo # Rust
 export VAGRANT_HOME=~/.local/share/vagrant
 
 # less
-export LESSHISTFILE=~/.state/less/history
+export LESSHISTFILE=~/.local/state/less/history
 export LESSKEY=~/.config/less/lesskey
 
 # Node.js
-export NODE_REPL_HISTORY=~/.state/nodejs/repl_history
+export NODE_REPL_HISTORY=~/.local/state/nodejs/repl_history
 export NPM_CONFIG_USERCONFIG=~/.config/npm/config
 
 if [ -f ~/.config/posix-sh/local-profile.sh ]
