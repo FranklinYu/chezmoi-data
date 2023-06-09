@@ -38,11 +38,12 @@ depends=(
   linux-firmware linux-lts
   minisign
   openssh
-  python-setuptools
+  pkgstats python-setuptools
   reflector reptyr ripgrep rsync
   skim subversion sudo
   texinfo tmux trash-cli
   vim
+  wget
 
   # for AUR maintainer
   aurpublish devtools namcap
@@ -66,6 +67,7 @@ depends=(
   ruby
 
   # other packages from AUR
+  chruby nvm ruby-install
 )
 depends+=("${_depends_for_command[@]}")
 
