@@ -23,10 +23,6 @@
 	ss = stash
 	st = status
 	sw = switch
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
-	markIgnoredLines = true
-	markUnblamableLines = true
 [pull]
 	ff = only
 [push]
