@@ -80,7 +80,8 @@ function set-terminal-title() {
 function FranklinYu::recover-terminal-title() {
 	local cmd_status=$status last_command_str=$history[$((HISTCMD-1))]
 	local last_exec=${${(Az)last_command_str}[1]}
-	if (( FranklinYu_ssh_commands[(Ie)$last_exec] )) && (( cmd_status == 255 ))
+	local last_exec_is_ssh="${FranklinYu_ssh_commands[(Ie)$last_exec]}"
+	if (( last_exec_is_ssh )) && (( cmd_status == 255 ))
 	then set-terminal-title
 	fi
 }
