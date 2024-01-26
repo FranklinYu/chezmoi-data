@@ -25,7 +25,7 @@ pacman --query --unrequired --deps --quiet |
 
 log-info 'checking optional packages…'
 if pacman --query --unrequired --unrequired --deps
-then >&2 echo '[warning] optional package found'; exit 1
+then >&2 echo '[warning] optional package found; query them with `-Qii`'; exit 1
 fi
 
 # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Detecting_more_unneeded_packages
