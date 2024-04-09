@@ -13,8 +13,14 @@ fi
 # See: https://wiki.archlinux.org/title/Pacman#Upgrading_packages
 sudo pacman --sync --refresh --sysupgrade
 
+# log functions; query with
+#     journalctl -t ${USER}:arch-roll
 function log-info() {
-	>&2 echo "[info] $1"
+	logger --id=$$ --tag="${USER}:arch-roll" --stderr --priority info "$1"
+}
+function fatal() {
+	logger --id=$$ --tag="${USER}:arch-roll" --stderr --priority crit "$1"
+	exit 1
 }
 
 # a.k.a. -Qtdq and -Rcs respectively
@@ -25,7 +31,7 @@ pacman --query --unrequired --deps --quiet |
 
 log-info 'checking optional packages…'
 if pacman --query --unrequired --unrequired --deps
-then >&2 echo '[warning] optional package found; query them with `-Qii`'; exit 1
+then fatal 'optional package found; query them with `-Qii`'
 fi
 
 # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Detecting_more_unneeded_packages
