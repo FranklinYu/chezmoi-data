@@ -10,6 +10,9 @@ venv/
 # gEdit
 *~
 
+# VS Code
+.vscode/
+
 {{ if stat (joinPath .chezmoi.sourceDir "local/git-ignore" ) -}}
 	{{ include "local/git-ignore" -}}
 {{ end }}
