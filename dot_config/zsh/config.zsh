@@ -73,6 +73,14 @@ function set-terminal-title() {
 	printf '\e]0;%s\a' "$*"
 }
 
+if [[ -n TMUX ]] && [[ -z _TMUX_PANE_TITLE_INITIALIZED ]]
+then
+	set-terminal-title
+
+	# Only reset it once, at the top-level shell.
+	export _TMUX_PANE_TITLE_INITIALIZED=true
+fi
+
 # When something happens to the connection, tmux/screen doesn’t have a chance to
 # clean up the terminal title. OpenSSH regards such a case as “an error
 # occurred”, and exits with 255.
