@@ -29,6 +29,11 @@ setopt correct list_packed magic_equal_subst numeric_glob_sort print_exit_value
 autoload -Uz add-zsh-hook
 2>/dev/null source ~/.config/zsh/report-completion.zsh
 
+# https://superuser.com/questions/1586794/vscode-cd-to-workspace-folder
+if [[ -v VSCODE_WORKSPACE && $VSCODE_WORKSPACE != '${workspaceFolder}' ]]
+then alias cd="HOME=${VSCODE_WORKSPACE:q} cd"
+fi
+
 # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
 function () {
 	declare -A mappings=(
