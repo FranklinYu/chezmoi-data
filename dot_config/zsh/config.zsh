@@ -35,7 +35,7 @@ then alias cd="HOME=${VSCODE_WORKSPACE:q} cd"
 fi
 
 # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-function () {
+function {
 	declare -A mappings=(
 		md '%F{cyan}' # start of bold
 		me '%f' # end of bold
@@ -53,7 +53,7 @@ function () {
 	alias man="$env_vars man"
 }
 
-function () {
+function {
 	local magenta_bold=`tput setaf 5; tput bold` cyan=`tput setaf 6` reset=`tput sgr0`
 	local lines=(
 		"$magenta_bold== time report ==$reset"
@@ -63,7 +63,7 @@ function () {
 	TIMEFMT=${(F)lines}
 }
 
-function () {
+function {
 	local ll_prefix=''
 	if [[ `uname` == Darwin ]]
 	then ll_prefix='LC_TIME=en_US.UTF-8 '
@@ -74,7 +74,7 @@ function () {
 	fi
 }
 
-function set-terminal-title() {
+function set-terminal-title {
 	printf '\e]0;%s\a' "$*"
 }
 
@@ -90,7 +90,7 @@ fi
 # clean up the terminal title. OpenSSH regards such a case as “an error
 # occurred”, and exits with 255.
 # https://manpages.debian.org/bullseye/openssh-client/ssh.1.en.html#EXIT_STATUS
-function FranklinYu::recover-terminal-title() {
+function FranklinYu::recover-terminal-title {
 	local cmd_status=$status last_command_str=$history[$((HISTCMD-1))]
 	local last_exec=${${(Az)last_command_str}[1]}
 	local last_exec_is_ssh="${FranklinYu_ssh_commands[(Ie)$last_exec]}"
@@ -102,17 +102,17 @@ FranklinYu_ssh_commands=(ssh)
 add-zsh-hook precmd FranklinYu::recover-terminal-title
 
 # [deprecated]
-function source-maybe() {
+function source-maybe {
 	2>/dev/null source $1
 }
 
-function source-from-share() {
+function source-from-share {
 	2>/dev/null source "/usr/share/$1" ||
 		2>/dev/null source "/usr/local/share/$1" ||
 		2>/dev/null source "/opt/local/share/$1"
 }
 
-function () {
+function {
 	local ls_alias=$aliases[ls]
 	unalias ls
 	source-from-share chruby/chruby.sh
@@ -129,7 +129,7 @@ source-from-share nvm/nvm.sh
 2>/dev/null source /Applications/MacPorts/iTerm2.app/Contents/Resources/iterm2_shell_integration.zsh ||
 	2>/dev/null source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh
 # https://iterm2.com/documentation-scripting-fundamentals.html#setting-user-defined-variables
-function iterm2_print_user_vars() {
+function iterm2_print_user_vars {
 	iterm2_set_user_var ruby_version ${RUBY_VERSION:-system}
 	if command -v nvm >/dev/null
 	then iterm2_set_user_var node_version `nvm version`
@@ -140,7 +140,7 @@ function iterm2_print_user_vars() {
 source-from-share zsh-autosuggestions/zsh-autosuggestions.zsh ||
 	source-from-share zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-function () {
+function {
 	local preview_command
 	if whence -p bat >/dev/null
 	then preview_command='bat --style=numbers --color=always --line-range :500 {}'
