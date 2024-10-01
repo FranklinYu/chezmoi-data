@@ -11,7 +11,13 @@ export TEX_CLEAN='latexmk -C'
 export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 export ANT_OPTS="-Dant.logger.defaults=$HOME/.config/java/ant-logger.properties"
 
-[ -f /usr/bin/lesspipe ] && eval `lesspipe`
+if [ -f /usr/bin/lesspipe ]
+then eval `lesspipe`
+fi
+
+if [ -f /usr/bin/dircolors ]
+then eval `dircolors`
+fi
 
 #===============================================================================
 # XDG standard #
