@@ -29,30 +29,6 @@ setopt correct list_packed magic_equal_subst numeric_glob_sort print_exit_value
 autoload -Uz add-zsh-hook
 2>/dev/null source ~/.config/zsh/report-completion.zsh
 
-# https://superuser.com/questions/1586794/vscode-cd-to-workspace-folder
-if [[ -v VSCODE_WORKSPACE && $VSCODE_WORKSPACE != '${workspaceFolder}' ]]
-then alias cd="HOME=${VSCODE_WORKSPACE:q} cd"
-fi
-
-# https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-function {
-	declare -A mappings=(
-		md '%F{cyan}' # start of bold
-		me '%f' # end of bold
-		us '%F{green}%U' # start of underline
-		ue '%f%u' # end of underline
-		so '%F{black}%K{yellow}' # start of standout
-		se '%f%k' # end of standout
-	)
-
-	local env_vars=() termcap terminfo
-	for termcap terminfo in ${(@kv)mappings}
-	do env_vars+=$(printf 'LESS_TERMCAP_%s=%s' $termcap ${(%)terminfo})
-	done
-	env_vars+='LESS=--LONG-PROMPT'
-	alias man="$env_vars man"
-}
-
 function {
 	local magenta_bold=`tput setaf 5; tput bold` cyan=`tput setaf 6` reset=`tput sgr0`
 	local lines=(
@@ -61,17 +37,6 @@ function {
 		" user: $cyan%U$reset system: $cyan%S$reset total: $cyan%*E$reset CPU: $cyan%P$reset"
 	)
 	TIMEFMT=${(F)lines}
-}
-
-function {
-	local ll_prefix=''
-	if [[ `uname` == Darwin ]]
-	then ll_prefix='LC_TIME=en_US.UTF-8 '
-	fi
-	if command -v exa >/dev/null
-	then alias ls=exa ll="${ll_prefix}exa --long --header" la='exa --all' tree='exa --tree'
-	else alias ls='ls --color=auto' ll="${ll_prefix}ls -l --human-readable" la='ls --almost-all'
-	fi
 }
 
 function set-terminal-title {
@@ -101,31 +66,6 @@ function FranklinYu::recover-terminal-title {
 FranklinYu_ssh_commands=(ssh)
 add-zsh-hook precmd FranklinYu::recover-terminal-title
 
-# [deprecated]
-function source-maybe {
-	2>/dev/null source $1
-}
-
-function source-from-share {
-	2>/dev/null source "/usr/share/$1" ||
-		2>/dev/null source "/usr/local/share/$1" ||
-		2>/dev/null source "/opt/local/share/$1"
-}
-
-function {
-	local ls_alias=$aliases[ls]
-	unalias ls
-	source-from-share chruby/chruby.sh
-	alias ls=$ls_alias
-}
-if source-from-share chruby/auto.sh
-then
-	add-zsh-hook -d preexec chruby_auto
-	add-zsh-hook precmd chruby_auto
-fi
-
-source-from-share nvm/nvm.sh
-
 2>/dev/null source /Applications/MacPorts/iTerm2.app/Contents/Resources/iterm2_shell_integration.zsh ||
 	2>/dev/null source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh
 # https://iterm2.com/documentation-scripting-fundamentals.html#setting-user-defined-variables
@@ -136,6 +76,20 @@ function iterm2_print_user_vars {
 	fi
 	it2git 2>/dev/null
 }
+
+function source-from-share {
+	2>/dev/null source "/usr/share/$1" ||
+		2>/dev/null source "/usr/local/share/$1" ||
+		2>/dev/null source "/opt/local/share/$1"
+}
+
+if source-from-share chruby/chruby.sh && source-from-share chruby/auto.sh
+then
+	add-zsh-hook -d preexec chruby_auto
+	add-zsh-hook precmd chruby_auto
+fi
+
+source-from-share nvm/nvm.sh
 
 source-from-share zsh-autosuggestions/zsh-autosuggestions.zsh ||
 	source-from-share zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -168,7 +122,47 @@ function {
 	fi
 }
 
-2>/dev/null source ~/.config/zsh/local-config.zsh
 source-from-share zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ||
 	source-from-share zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-unfunction source-from-share source-maybe
+unfunction source-from-share
+
+#---------------------------------------------------------------
+# aliases
+
+# https://superuser.com/questions/1586794/vscode-cd-to-workspace-folder
+if [[ -v VSCODE_WORKSPACE && $VSCODE_WORKSPACE != '${workspaceFolder}' ]]
+then alias cd="HOME=${VSCODE_WORKSPACE:q} cd"
+fi
+
+# https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
+function {
+	declare -A mappings=(
+		md '%F{cyan}' # start of bold
+		me '%f' # end of bold
+		us '%F{green}%U' # start of underline
+		ue '%f%u' # end of underline
+		so '%F{black}%K{yellow}' # start of standout
+		se '%f%k' # end of standout
+	)
+
+	local env_vars=() termcap terminfo
+	for termcap terminfo in ${(@kv)mappings}
+	do env_vars+=$(printf 'LESS_TERMCAP_%s=%s' $termcap ${(%)terminfo})
+	done
+	env_vars+='LESS=--LONG-PROMPT'
+	alias man="$env_vars man"
+}
+
+# Needs to be after sourcing chruby.
+function {
+	local ll_prefix=''
+	if [[ `uname` == Darwin ]]
+	then ll_prefix='LC_TIME=en_US.UTF-8 '
+	fi
+	if command -v exa >/dev/null
+	then alias ls=exa ll="${ll_prefix}exa --long --header" la='exa --all' tree='exa --tree'
+	else alias ls='ls --color=auto' ll="${ll_prefix}ls -l --human-readable" la='ls --almost-all'
+	fi
+}
+
+2>/dev/null source ~/.config/zsh/local-config.zsh
