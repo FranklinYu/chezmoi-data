@@ -66,8 +66,11 @@ function FranklinYu::recover-terminal-title {
 FranklinYu_ssh_commands=(ssh)
 add-zsh-hook precmd FranklinYu::recover-terminal-title
 
-2>/dev/null source /Applications/MacPorts/iTerm2.app/Contents/Resources/iterm2_shell_integration.zsh ||
-	2>/dev/null source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh
+function {
+	local file='Contents/Resources/iterm2_shell_integration.zsh'
+	2>/dev/null source /Applications/MacPorts/iTerm2.app/$file ||
+		2>/dev/null source /Applications/iTerm.app/$file
+}
 # https://iterm2.com/documentation-scripting-fundamentals.html#setting-user-defined-variables
 function iterm2_print_user_vars {
 	iterm2_set_user_var ruby_version ${RUBY_VERSION:-system}
