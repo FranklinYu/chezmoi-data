@@ -24,7 +24,7 @@ setopt extended_history inc_append_history_time
 setopt hist_ignore_dups hist_ignore_space hist_no_store hist_reduce_blanks
 
 # other options
-setopt correct list_packed magic_equal_subst numeric_glob_sort print_exit_value
+setopt correct interactive_comments list_packed magic_equal_subst numeric_glob_sort print_exit_value
 
 autoload -Uz add-zsh-hook
 2>/dev/null source ~/.config/zsh/report-completion.zsh
