@@ -1,3 +1,16 @@
+# https://repology.org/project/tmux-plugin-manager
+# Pending packaging for nixpkgs
 ['.local/share/tmux/tpm/']
-	type = 'git-repo'
-	url = 'https://github.com/tmux-plugins/tpm.git'
+	type = 'archive'
+	exact = true
+	stripComponents = 1
+
+	# https://github.com/tmux-plugins/tpm/releases/tag/v3.1.0
+	url = 'https://github.com/tmux-plugins/tpm/archive/7bdb7ca33c9cc6440a600202b50142f401b6fe21.tar.gz'
+
+# https://repology.org/project/zinit
+# Pending packaging for Debian
+['.local/share/zinit/zinit.git/']
+	type = 'git-repo'  # zi::version depends on Git metadata
+	refreshPeriod = '672h'  # 4 weeks
+	url = 'https://github.com/zdharma-continuum/zinit.git'
