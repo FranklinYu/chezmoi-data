@@ -1,6 +1,19 @@
-PATH=~/.local/bin:/opt/local/bin:/opt/local/sbin:"$PATH"
-export MANPATH=~/.local/share/man:/opt/local/share/man:"$MANPATH"
-export INFOPATH=~/.local/share/info:/opt/local/share/info:"$INFOPATH"
+export INFOPATH MANPATH
+
+# prepend for Homebrew
+PATH=/opt/homebrew/bin:/opt/homebrew/sbin:"$PATH"
+INFOPATH=/opt/homebrew/share/info:"$INFOPATH"
+MANPATH=/opt/homebrew/share/man:"$MANPATH"
+
+# prepend for MacPorts
+PATH=/opt/local/bin:/opt/local/sbin:"$PATH"
+INFOPATH=/opt/local/share/info:"$INFOPATH"
+MANPATH=/opt/local/share/man:"$MANPATH"
+
+# prepend for user local overrides
+PATH=~/.local/bin:"$PATH"
+MANPATH=~/.local/share/man
+INFOPATH=~/.local/share/info
 
 export CFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wcast-qual'
 export CXXFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wcast-qual'
