@@ -7,11 +7,11 @@ REPORTTIME=10
 WORDCHARS=${WORDCHARS/\/}
 WORDCHARS=${WORDCHARS/=}
 
-bindkey -M emacs '\e[5~' history-beginning-search-backward # PgUp
-bindkey -M emacs '\e[6~' history-beginning-search-forward # PgDn
-bindkey -M emacs '\e[3~' delete-char # Delete
-bindkey -M emacs '\e[H' beginning-of-line # Home
-bindkey -M emacs '\e[F' end-of-line # End
+bindkey '\e[5~' history-beginning-search-backward # PgUp
+bindkey '\e[6~' history-beginning-search-forward # PgDn
+bindkey '\e[3~' delete-char # Delete
+bindkey '\e[H' beginning-of-line # Home
+bindkey '\e[F' end-of-line # End
 bindkey -M isearch '\e[5~' history-incremental-search-backward # PgUp
 bindkey -M isearch '\e[6~' history-incremental-search-forward # PgDn
 
