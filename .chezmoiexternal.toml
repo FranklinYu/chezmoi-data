@@ -8,9 +8,16 @@
 	# https://github.com/tmux-plugins/tpm/releases/tag/v3.1.0
 	url = 'https://github.com/tmux-plugins/tpm/archive/7bdb7ca33c9cc6440a600202b50142f401b6fe21.tar.gz'
 
-# https://repology.org/project/zinit
-# Pending packaging for Debian
-['.local/share/zinit/zinit.git/']
-	type = 'git-repo'  # zi::version depends on Git metadata
-	refreshPeriod = '672h'  # 4 weeks
-	url = 'https://github.com/zdharma-continuum/zinit.git'
+# https://github.com/zdharma-continuum/fast-syntax-highlighting/releases/tag/v1.56
+['.local/share/fast-syntax-highlighting/']
+	type = 'archive'
+	exact = true
+	stripComponents = 1
+	url = 'https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/5ecd353c81214f82bdeca5483fab6ccc5a2d5494.tar.gz'
+
+# https://github.com/zsh-users/zsh-autosuggestions/releases/tag/v0.7.1
+['.local/share/zsh-autosuggestions/']
+	type = 'archive'
+	exact = true
+	stripComponents = 1
+	url = 'https://github.com/zsh-users/zsh-autosuggestions/archive/e52ee8ca55bcc56a17c828767a3f98f22a68d4eb.tar.gz'

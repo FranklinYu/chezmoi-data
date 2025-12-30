@@ -124,15 +124,8 @@ function {
 
 unfunction source-from-share
 
-source ~/.local/share/zinit/zinit.git/zinit.zsh
-
-# https://github.com/zdharma-continuum/fast-syntax-highlighting/releases/tag/v1.55
-zinit ice ver"5351bd907ea39d9000b7bd60b5bb5b0b1d5c8046"
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-# https://github.com/zsh-users/zsh-autosuggestions/releases/tag/v0.7.1
-zinit ice ver"e52ee8ca55bcc56a17c828767a3f98f22a68d4eb"
-zinit light zsh-users/zsh-autosuggestions
+source ~/.local/share/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 #---------------------------------------------------------------
 # aliases
