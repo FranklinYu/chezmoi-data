@@ -2,7 +2,6 @@ if [[ -f ~/.config/posix-sh/config.sh ]]
 then emulate sh -c 'source ~/.config/posix-sh/config.sh'
 fi
 
-PROMPT='%F{blue}%~%f %#'
 REPORTTIME=10
 WORDCHARS=${WORDCHARS/\/}
 WORDCHARS=${WORDCHARS/=}
@@ -65,6 +64,9 @@ function FranklinYu::recover-terminal-title {
 }
 FranklinYu_ssh_commands=(ssh)
 add-zsh-hook precmd FranklinYu::recover-terminal-title
+
+source ~/.local/share/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.p10k.zsh
 
 function {
 	local file='Contents/Resources/iterm2_shell_integration.zsh'

@@ -21,3 +21,12 @@
 	exact = true
 	stripComponents = 1
 	url = 'https://github.com/zsh-users/zsh-autosuggestions/archive/e52ee8ca55bcc56a17c828767a3f98f22a68d4eb.tar.gz'
+
+# https://github.com/romkatv/powerlevel10k/releases/tag/v1.20.0
+['.local/share/powerlevel10k/']
+	type = 'archive'
+	stripComponents = 1
+	url = 'https://github.com/romkatv/powerlevel10k/archive/35833ea15f14b71dbcebc7e54c104d8d56ca5268.tar.gz'
+
+	# p10k compiles Zsh files into zwc
+	exact = false
