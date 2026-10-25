@@ -7,13 +7,14 @@ import subprocess
 
 PACKAGE_DIRECTORY = Path(__file__).resolve().parent
 PACKAGE_NAME = "my-base-meta"
-PACKAGE_VERSION = "0.1.4"
+PACKAGE_VERSION = "0.1.5"
 
 DEPENDENCIES = (
     "ansible-core", "avfs",
     "bat", "build-essential", "busybox",
     "cmark", "cowsay",
     "diffutils",
+    "eza",
     "fd-find", "fzf",
     "gh", "git", "git-delta", "goaccess",
     "minisign",
@@ -65,7 +66,7 @@ def generate_control() -> None:
 def main() -> None:
     generate_control()
     subprocess.run(
-        ["dpkg-deb", "--build", "generated", f"{PACKAGE_NAME}.deb"],
+        ["dpkg-deb", "--build", "--root-owner-group", "generated", f"{PACKAGE_NAME}.deb"],
         cwd=PACKAGE_DIRECTORY,
         check=True,
     )
