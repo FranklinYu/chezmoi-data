@@ -6,6 +6,22 @@ REPORTTIME=10
 WORDCHARS=${WORDCHARS/\/}
 WORDCHARS=${WORDCHARS/=}
 
+# LC_TERMINAL_TYPE identifies the local Mac terminal, including over SSH.
+case ${LC_TERMINAL_TYPE-} in
+	iterm2|xterm-kitty)
+		bindkey -M emacs '\e[1;3D' backward-word # Option + Left
+		bindkey -M emacs '\e[1;3C' forward-word # Option + Right
+		;;
+	nsterm|vscode|chatgpt)
+		bindkey -M emacs '\eb' backward-word # Option + Left
+		bindkey -M emacs '\ef' forward-word # Option + Right
+		;;
+	*)
+		bindkey -M emacs '\e[1;5D' backward-word # Ctrl + Left
+		bindkey -M emacs '\e[1;5C' forward-word # Ctrl + Right
+		;;
+esac
+
 bindkey -M emacs '\e[5~' history-beginning-search-backward # PgUp
 bindkey -M emacs '\e[6~' history-beginning-search-forward # PgDn
 bindkey -M emacs '\e[3~' delete-char # Delete

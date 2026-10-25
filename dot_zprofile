@@ -1,5 +1,33 @@
 emulate sh -c 'source ~/.profile'
 
+# LC_TERMINAL_TYPE is a custom variable identifying the local terminal.
+# The LC_ prefix matches the SSH client's SendEnv LC_* configuration.
+# Values are terminfo names, except for the private name chatgpt.
+# Preserve forwarded values; only infer terminal identity on macOS.
+function {
+	export LC_TERMINAL_TYPE=${LC_TERMINAL_TYPE-}
+	[[ -n $LC_TERMINAL_TYPE || $OSTYPE != darwin* ]] && return
+
+	if [[ -v CODEX_APP_TITLE ]]
+	then
+		# Private terminfo-style name; no upstream entry exists yet.
+		LC_TERMINAL_TYPE=chatgpt
+		return
+	fi
+
+	if [[ -n ${KITTY_WINDOW_ID-} || -n ${KITTY_PID-} ]]
+	then
+		LC_TERMINAL_TYPE=xterm-kitty
+		return
+	fi
+
+	case ${TERM_PROGRAM-} in
+		iTerm.app) LC_TERMINAL_TYPE=iterm2 ;;
+		Apple_Terminal) LC_TERMINAL_TYPE=nsterm ;;
+		vscode) LC_TERMINAL_TYPE=vscode ;;
+	esac
+}
+
 export NVM_DIR=~/.local/share/nvm
 
 if [[ -z $LANG ]] && [[ $- == *i* ]]
