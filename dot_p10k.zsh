@@ -796,7 +796,8 @@
   typeset -g POWERLEVEL9K_NIX_SHELL_BACKGROUND=4
 
   # Display the icon of nix_shell if PATH contains a subdirectory of /nix/store.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_INFER_FROM_PATH=false
+  # See https://github.com/romkatv/powerlevel10k/issues/2246#issuecomment-1504182256.
+  typeset -g POWERLEVEL9K_NIX_SHELL_INFER_FROM_PATH=true
 
   # Tip: If you want to see just the icon without "pure" and "impure", uncomment the next line.
   # typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION=
