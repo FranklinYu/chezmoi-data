@@ -22,13 +22,25 @@ case ${LC_TERMINAL_TYPE-} in
 		;;
 esac
 
-bindkey -M emacs '\e[5~' history-beginning-search-backward # PgUp
-bindkey -M emacs '\e[6~' history-beginning-search-forward # PgDn
+# Unlike the built-in history-incremental-search widgets, these are shipped
+# as shell functions and must be registered with ZLE.
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Bind arrows in both normal and application cursor modes.
+bindkey -M emacs '\e[A' up-line-or-beginning-search
+bindkey -M emacs '\eOA' up-line-or-beginning-search
+bindkey -M emacs '\e[B' down-line-or-beginning-search
+bindkey -M emacs '\eOB' down-line-or-beginning-search
+bindkey -M isearch '\e[A' history-incremental-search-backward
+bindkey -M isearch '\eOA' history-incremental-search-backward
+bindkey -M isearch '\e[B' history-incremental-search-forward
+bindkey -M isearch '\eOB' history-incremental-search-forward
+
 bindkey -M emacs '\e[3~' delete-char # Delete
 bindkey -M emacs '\e[H' beginning-of-line # Home
 bindkey -M emacs '\e[F' end-of-line # End
-bindkey -M isearch '\e[5~' history-incremental-search-backward # PgUp
-bindkey -M isearch '\e[6~' history-incremental-search-forward # PgDn
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
