@@ -29,7 +29,7 @@
 	default = simple
 [user]
 	name = Franklin Yu
-	email = franklinyu@google.com
+	email = franklinyu@hotmail.com
 
 [include]
 	path = local-config
