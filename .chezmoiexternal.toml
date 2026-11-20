@@ -30,3 +30,11 @@
 
 	# p10k compiles Zsh files into zwc
 	exact = false
+
+['.local/libexec/']
+	type = 'archive'
+	url = 'https://github.com/FranklinYu/tiny-scripts/archive/refs/heads/master.tar.gz'
+	refreshPeriod = '24h'
+	include = ['*/libexec/**']
+	stripComponents = 2
+	exact = false
