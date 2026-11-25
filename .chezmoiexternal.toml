@@ -1,3 +1,7 @@
+['.agents/']
+	type = 'git-repo'
+	url = 'https://github.com/FranklinYu/agent-configurations.git'
+
 # https://repology.org/project/tmux-plugin-manager
 # Pending packaging for nixpkgs
 ['.local/share/tmux/tpm/']
