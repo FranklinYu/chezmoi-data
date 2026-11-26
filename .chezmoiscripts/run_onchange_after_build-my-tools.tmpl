@@ -1,0 +1,11 @@
+{{ if and (eq .chezmoi.os "darwin") (lookPath "nix") -}}
+#!/bin/sh
+# flake.nix: {{ include "no-deploy/my-tools/flake.nix" | sha256sum }}
+# flake.lock: {{ include "no-deploy/my-tools/flake.lock" | sha256sum }}
+
+set -o errexit -o nounset
+
+state_dir="$CHEZMOI_DEST_DIR/.local/state/nix"
+mkdir -p "$state_dir"
+exec nix build --out-link "$state_dir/my-tools" "path:$CHEZMOI_SOURCE_DIR/no-deploy/my-tools"
+{{ end -}}

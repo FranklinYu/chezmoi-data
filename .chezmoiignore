@@ -1,3 +1,10 @@
 local/
 ReadMe.markdown
 no-deploy/
+
+{{ if ne .chezmoi.os "darwin" }}
+Library/
+{{ end }}
+{{ if not (and (eq .chezmoi.os "darwin") (lookPath "nix")) }}
+Library/LaunchAgents/name.franklin-yu.gui-path.plist
+{{ end }}

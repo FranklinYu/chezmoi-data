@@ -10,6 +10,12 @@ PATH=/opt/local/bin:/opt/local/sbin:"$PATH"
 INFOPATH=/opt/local/share/info:"$INFOPATH"
 MANPATH=/opt/local/share/man:"$MANPATH"
 
+# prepend for personal Nix tools
+if [ -d "$HOME/.local/state/nix/my-tools/bin" ]
+then
+	PATH="$HOME/.local/state/nix/my-tools/bin:$PATH"
+fi
+
 # prepend for user local overrides
 PATH=~/.local/bin:"$PATH"
 MANPATH=~/.local/share/man
