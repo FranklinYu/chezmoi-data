@@ -23,6 +23,9 @@
 	ss = stash
 	st = status
 	sw = switch
+[hook "format-message"]
+	event = commit-msg
+	command = ~/.local/libexec/git-format-message --in-place
 [pull]
 	ff = only
 [push]

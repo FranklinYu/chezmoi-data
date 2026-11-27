@@ -20,7 +20,7 @@
           eza
           fzf
           gh
-          git
+          git  # Config-based Git hooks require Git 2.54 or later.
           hyperfine
           jujutsu
           melody
